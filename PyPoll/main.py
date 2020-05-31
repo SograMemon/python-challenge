@@ -32,19 +32,18 @@ with open(csvpath, 'r') as csvfile:
                 
         #print(str(voteN))
         
-    
+    print()
     print("Election Results")
     print("-------------------------")
     print(f"Total Votes: {voteN}")
     print("-------------------------")
     winnerValue=1 
     for i in range(len(candidates)):
-        print(f"{candidates[i]} : {round((votesRecieved[i]/ voteN)*100, 3)} % ({votesRecieved[i]})")
-        if winnerValue < round((votesRecieved[i]/ voteN)*100,3):
-            winnerValue = round((votesRecieved[i]/ voteN)*100,3)
+        print(f"{candidates[i]} : {round((votesRecieved[i]/ voteN)*100,3)} % ({votesRecieved[i]})")
+        if winnerValue < (votesRecieved[i]/ voteN)*100:
+            winnerValue = (votesRecieved[i]/ voteN)*100
             winnerName = candidates[i]
     print("-------------------------")
     print(f"Winner : {winnerName}")
     print("-------------------------")
-    print()
     
