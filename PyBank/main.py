@@ -6,17 +6,18 @@ csvpath= os.path.join('Resources','budget_data.csv')
 with open (csvpath) as file_handler:
     lines = csv.reader(file_handler, delimiter=',')
     myvariable=next(lines)
-    #print(f"These are my csv headrs: {myvariable}")
     
-    greatestInc =greatestDec = next(lines)
+    
+    greatestInc = greatestDec = next(lines)
     monthsN= 1
     total= int(greatestInc[1])
+    
     for row in lines:
         monthsN += 1
         total += int(row[1])
-        if greatestInc[1] < row[1]:
-            greatetInc = row
-        if greatestDec[1] > row[1]:
+        if int(greatestInc[1]) < int(row[1]) :
+            greatestInc = row
+        if int(greatestDec[1]) > int(row[1]):
             greatestDec = row
 
         #print(row)
