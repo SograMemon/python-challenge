@@ -1,0 +1,7 @@
+
+ Paragraph Analysis for paragraph_3.txt 
+ ---------------------------------------- 
+ Approximate Word Count: 122 
+ Approximate Sentence Count: 5 
+ Average Letter Count: 4.3 
+ Average Sentence Length: 24.0

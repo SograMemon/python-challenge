@@ -1,30 +1,34 @@
 import os
 import re
 
-filepath = os.path.join("Resources", "paragraph_3.txt")
-wordC= scentenceC= letterC = sentenceLen= wordLen =0
-with open(filepath, 'r') as txtfile:
-    filereader= txtfile.read()
-    #print(filereader)
-    filereader.strip()
-    scentenceC=filereader.count(".")
+fileList = ["paragraph_1.txt", "paragraph_2.txt", "paragraph_3.txt"]
 
-    wordList= re.split("[^a-zA-z]+", filereader.strip())
-    wordC= len(wordList)- 1
-    for word in wordList:
-        #print(word)
-        wordLen += len(word)
-    letterC = round(wordLen/wordC, 1)
-    
-    sentenceList= re.split("(?<=[.!?]) +", filereader.strip())
-    for sentence in sentenceList:
-        sentenceLen += sentence.strip().count(" ")+1
-    sentenceLen= round(sentenceLen/scentenceC, 1)
-    
+for file in fileList:
+    filepath = os.path.join("Resources", file)
+    outputPath = os.path.join("Analysis", "output_"+file)
+    wordC= scentenceC= letterC = sentenceLen= wordLen =0
+    with open(filepath, 'r') as txtfile:
+        filereader= txtfile.read()
+        #print(filereader)
+        filereader.strip()
+        scentenceC=filereader.count(".")
 
-print("Paragraph Analysis")
-print("-----------------")
-print(f"Approximate Word Count: {wordC}")
-print(f"Approximate Sentence Count: {scentenceC}")
-print(f"Average Letter Count: {letterC}")
-print(f"Average Sentence Length: {sentenceLen}")
+        wordList= re.split("[^a-zA-z]+", filereader.strip())
+        wordC= len(wordList) - 1
+        for word in wordList:
+            #print(word)
+            wordLen += len(word)
+        letterC = round(wordLen/wordC, 1)
+
+        sentenceList= re.split("(?<=[.!?]) +", filereader.strip())
+        for sentence in sentenceList:
+            sentenceLen += sentence.strip().count(" ")+1
+        sentenceLen= round(sentenceLen/scentenceC, 1)
+    
+    writerTxtFile = open(outputPath, 'w')
+    writerTxtFile.write(f"\n Paragraph Analysis for {file} \n ---------------------------------------- \n Approximate Word Count: {wordC} \n Approximate Sentence Count: {scentenceC} \n Average Letter Count: {letterC} \n Average Sentence Length: {sentenceLen}") 
+    writerTxtFile.close()
+
+    with open(outputPath, 'r') as filereader:
+        reader= filereader.read()
+        print(reader)
