@@ -12,10 +12,7 @@ with open (csvpath) as file_handler:
     greatestInc = next(lines)
     greatestDec = greatestInc[:]
     temp = int(greatestInc[1])
-    print()
-    #print(greatestDec)
-    #print(temp)
-    totalChange = int(greatestInc[1])
+    totalChange = 0
     monthsN= 1
     total= int(greatestInc[1])
     
@@ -30,13 +27,9 @@ with open (csvpath) as file_handler:
         if int(greatestDec[1]) > profit:
             greatestDec[0] = row[0]
             greatestDec[1] = profit
-            #print(greatestDec)
         temp = int(row[1])
-        #print(temp)
 
-        #print(row)
-    avg= totalChange
- 
+    avg= round(totalChange/(monthsN-1),2)
 
 writeTxtFile = open (outputPath, 'w')
 writeTxtFile.write(f" Financial Analysis \n ---------------------------- \n Total Months: {monthsN} \n Total: $ {total} \n Average Change: $ {avg} \n Greatest Increase in profits: {greatestInc[0]} ($ {greatestInc[1]}) \n Greatest Decrease in profits: {greatestDec[0]} ($ {greatestDec[1]})")
